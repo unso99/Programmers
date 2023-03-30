@@ -8,7 +8,7 @@ public class Main {
         int b = sc.nextInt();
 
         System.out.println(Integer.parseInt(n,b));
-
-
+        
+        sc.close()
     }
 }
