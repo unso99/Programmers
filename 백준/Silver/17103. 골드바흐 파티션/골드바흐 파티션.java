@@ -5,21 +5,6 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int t = Integer.parseInt(br.readLine());
-        for (int i = 0; i < t; i++) {
-            int num = Integer.parseInt(br.readLine());
-
-            bw.write(GoldbachCount(num) + "\n");
-        }
-
-        bw.flush();
-        br.close();
-        bw.close();
-    }
-
-
-
-    static int GoldbachCount(int x) {
         int[] arr = new int[1000001];
 
         for (int i = 2; i < arr.length; i++) {
@@ -34,6 +19,21 @@ public class Main {
             }
         }
 
+        int t = Integer.parseInt(br.readLine());
+        for (int i = 0; i < t; i++) {
+            int num = Integer.parseInt(br.readLine());
+
+            bw.write(GoldbachCount(num, arr) + "\n");
+        }
+
+        bw.flush();
+        br.close();
+        bw.close();
+    }
+
+
+
+    static int GoldbachCount(int x, int[] arr) {
         int count = 0;
         for (int i = 2; i <= x / 2; i++) {
             int a = i;
