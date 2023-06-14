@@ -1,34 +1,27 @@
 import java.io.BufferedReader
+import java.io.BufferedWriter
 import java.io.InputStreamReader
-import java.math.BigDecimal
-import java.text.DecimalFormat
-
-fun main() {
-    val br = BufferedReader(InputStreamReader(System.`in`))
-
-    val l = Integer.parseInt(br.readLine())
-    val str = br.readLine()
-
-    val hashMap = HashMap<Char, Int>()
-
-    for (i in 'a'..'z') {
-        val key = i
-        val value = i - 'a' + 1
-        hashMap[key] = value
-    }
-    var sum: BigDecimal = BigDecimal.ZERO
-    for (i in str.indices) {
-        val a = str[i]
-        val value = hashMap.get(a)
-        val num = value?.times(Math.pow(31.0, i.toDouble()))?.toBigDecimal()
-        if (num != null) {
-            sum += num
+import java.io.OutputStreamWriter
+import kotlin.math.pow
+ 
+ 
+val br = BufferedReader(InputStreamReader(System.`in`))
+fun main()=with(br){
+    val bw = BufferedWriter(OutputStreamWriter(System.out))
+    val N = readLine()!!.toInt()
+    val str = readLine()
+    var go = 0
+    var expo = 1L
+    var sum = 0L
+        for(w in str) {
+            if(go==0)
+                expo=1L
+            else
+                expo=(expo*31)%1234567891
+            sum=(sum+(w.toInt()-96)*expo)%1234567891
+            go++
         }
-    }
-    val formatter = DecimalFormat("###0")
-    val result = formatter.format(sum)
-
-    println(result)
-
-
+    bw.write("${sum%1234567891}")
+    bw.flush()
+    bw.close()
 }
