@@ -1,26 +1,29 @@
-import java.io.BufferedReader
-import java.io.InputStreamReader
+import java.io.*
+import java.util.*
 
-fun main() {
+fun main(args : Array<String>){
     val br = BufferedReader(InputStreamReader(System.`in`))
-    val str = br.readLine()
-    val upstr = str.uppercase()
-    val map = mutableMapOf<Char, Int>()
-    upstr.forEach {
-        if (map.containsKey(it)){
-            map[it] = map[it]!!.plus(1)
-        }else {
-            map.set(it,1)
+
+    val arr = br.readLine().uppercase().toCharArray()
+
+    val map = HashMap<Char,Int>()
+
+    for(i in 0 until arr.size){
+        map[arr[i]] = map.getOrDefault(arr[i],0) + 1
+    }
+
+    var max = Int.MIN_VALUE
+    var answer = ""
+    map.keys.forEach{
+        if(map.get(it)!! > max) {
+            max = map.get(it)!!
+            answer = it.toString()
+        }else if(map.get(it) == max){
+            answer = "?"
         }
     }
 
-    val max = map.maxByOrNull { it.value }
-    if (map.filter { it.value == max!!.value }.count() > 1){
-        println("?")
-    }
-    else{
-        println(max!!.key)
-    }
+    println(answer)
 
 
 }
