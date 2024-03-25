@@ -8,26 +8,20 @@ public class Main {
 		
 		int N = Integer.parseInt(br.readLine());
 		
-		Map<Integer, Integer> map = new HashMap<>();
+		HashSet<Integer> set = new HashSet<>();
 		
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		for(int i = 0; i < N; i++) {
-			int n = Integer.parseInt(st.nextToken());
-			
-			map.put(n, map.getOrDefault(n, 0)+1);
+			int num = Integer.parseInt(st.nextToken());
+			set.add(num);
 		}
 		
-		List<Integer> list = new ArrayList<>();
-		
-		for(int num : map.keySet()) {
-			list.add(num);
-		}
+		List<Integer> list= new ArrayList<>(set);
 		
 		list.sort(new Comparator<Integer>() {
-			
 			@Override
 			public int compare(Integer o1, Integer o2) {
-				return o1 - o2;
+				return o1- o2;
 			}
 		});
 		
